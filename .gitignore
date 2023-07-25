@@ -13,6 +13,9 @@ target/
 .springBeans
 .sts4-cache
 
+# OSX
+.DS_Store
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

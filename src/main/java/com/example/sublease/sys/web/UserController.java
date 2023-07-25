@@ -69,8 +69,7 @@ public class UserController {
 
     // delete user rest api
     @DeleteMapping("/users/{id}")
-    public Map<String, Boolean> deleteById
-    (@PathVariable String id) {
+    public Map<String, Boolean> deleteById(@PathVariable String id) {
 
         User user = userMapper.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException

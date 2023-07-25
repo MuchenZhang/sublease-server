@@ -11,33 +11,35 @@
         <result column="my_posts" property="myPosts"/>
     </resultMap>
 
-    <sql id="userColumns">
-        a.id AS "id",
-        a.first_name AS "firstName",
-        a.last_name AS "lastName",
-        a.email AS "email",
-        a.pwd AS "pwd",
-        a.starred_posts AS "starredPosts",
-        a.my_posts AS "myPosts"
-    </sql>
+<!--    <sql id="userColumns">-->
+<!--        a.id AS "id",-->
+<!--        a.first_name AS "firstName",-->
+<!--        a.last_name AS "lastName",-->
+<!--        a.email AS "email",-->
+<!--        a.pwd AS "pwd",-->
+<!--        a.starred_posts AS "starredPosts",-->
+<!--        a.my_posts AS "myPosts"-->
+<!--    </sql>-->
 
     <sql id="userJoins">
 
     </sql>
 
     <select id="findById" resultMap="UserResultMap" resultType="com.example.sublease.sys.entity.User">
-        SELECT
-            <include refid="userColumns"/>
-        FROM T_USER a
-            <include refid="userJoins"/>
-        WHERE a.id = #{id}
+        SELECT * FROM T_USER WHERE id = #{id}
+<!--        SELECT-->
+<!--            <include refid="userColumns"/>-->
+<!--        FROM T_USER a-->
+<!--            <include refid="userJoins"/>-->
+<!--        WHERE a.id = #{id}-->
     </select>
 
     <select id="findAll" resultMap="UserResultMap" resultType="com.example.sublease.sys.entity.User">
-        SELECT
-            <include refid="userColumns"/>
-        FROM T_USER a
-            <include refid="userJoins"/>
+        SELECT * FROM T_USER
+<!--        SELECT-->
+<!--            <include refid="userColumns"/>-->
+<!--        FROM T_USER a-->
+<!--            <include refid="userJoins"/>-->
     </select>
 
 
