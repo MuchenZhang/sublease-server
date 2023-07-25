@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.sublease.sys.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="com.example.sublease.sys.entity.User">
+        <result column="id" property="id"/>
+        <result column="first_name" property="firstName"/>
+        <result column="last_name" property="lastName"/>
+        <result column="email" property="email"/>
+        <result column="pwd" property="pwd"/>
+        <result column="starred_posts" property="starredPosts"/>
+        <result column="my_posts" property="myPosts"/>
+    </resultMap>
+
+    <sql id="userColumns">
+        a.id AS "id",
+        a.first_name AS "firstName",
+        a.last_name AS "lastName",
+        a.email AS "email",
+        a.pwd AS "pwd",
+        a.starred_posts AS "starredPosts",
+        a.my_posts AS "myPosts"
+    </sql>
+
+    <sql id="userJoins">
+
+    </sql>
+
+    <select id="findById" resultMap="UserResultMap" resultType="com.example.sublease.sys.entity.User">
+        SELECT
+            <include refid="userColumns"/>
+        FROM T_USER a
+            <include refid="userJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="UserResultMap" resultType="com.example.sublease.sys.entity.User">
+        SELECT
+            <include refid="userColumns"/>
+        FROM T_USER a
+            <include refid="userJoins"/>
+    </select>
+
+
+    <insert id="insert" parameterType="com.example.sublease.sys.entity.User">
+        INSERT INTO T_USER(
+        id,
+        first_name,
+        last_name,
+        email,
+        pwd,
+        my_posts,
+        starred_posts
+        ) VALUES (
+        #{id},
+        #{firstName},
+        #{lastName},
+        #{email},
+        #{pwd},
+        #{myPosts},
+        #{starredPosts}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE T_USER SET
+        first_name = #{firstName},
+        last_name = #{lastName},
+        email = #{email},
+        pwd = #{pwd},
+        my_posts = #{myPosts},
+        starred_posts = #{starredPosts}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM T_USER
+        WHERE id =#{id}
+    </delete>
+</mapper>
