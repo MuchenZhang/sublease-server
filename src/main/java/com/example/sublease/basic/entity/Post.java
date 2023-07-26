@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Data
 @Getter
@@ -31,9 +30,7 @@ public class Post {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createDate;
 
-    public Post() {
-        this.id = UUID.randomUUID().toString();
-    }
+    public Post() {}
 
     public String getId() { return this.id; }
 

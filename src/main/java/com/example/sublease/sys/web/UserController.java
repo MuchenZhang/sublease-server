@@ -15,15 +15,13 @@ import java.util.Map;
 @RequestMapping(value = "/sys")
 public class UserController {
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     private UserService userService;
 
     // get all users
     @GetMapping("/users")
     public List<User> findAll()
     {
-        return userMapper.findAll();
+        return userService.findAll();
     }
 
     // create user rest API
@@ -31,7 +29,7 @@ public class UserController {
     public Map<String, Boolean> insert(@RequestBody User user)  {
         Map<String, Boolean> response = new HashMap<>();
 
-        Boolean bool = userMapper.insert(user) > 0 ?
+        Boolean bool = userService.insert(user) > 0 ?
                 response.put("created", Boolean.TRUE) :
                 response.put("created", Boolean.FALSE);
 
@@ -43,7 +41,7 @@ public class UserController {
     @GetMapping("/users/{id}")
     public User findById(@PathVariable String id) {
 
-        User user = userMapper.findById(id).
+        User user = userService.findById(id).
                 orElseThrow(() -> new ResourceNotFoundException
                         ("User not exist with id :" + id));
         return user;
@@ -54,13 +52,13 @@ public class UserController {
     public Map<String, Boolean> update(@PathVariable String id,
                                            @RequestBody User userDetails) {
 
-        User user = userMapper.findById(id)
+        User user = userService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException
                         ("User not exist with id :" + id));
         userDetails.setId(id);
         Map<String, Boolean> response = new HashMap<>();
 
-        Boolean bool = userMapper.update(userDetails) > 0 ?
+        Boolean bool = userService.update(userDetails) > 0 ?
                 response.put("updated", Boolean.TRUE) :
                 response.put("updated", Boolean.FALSE);
 
@@ -71,13 +69,13 @@ public class UserController {
     @DeleteMapping("/users/{id}")
     public Map<String, Boolean> deleteById(@PathVariable String id) {
 
-        User user = userMapper.findById(id)
+        User user = userService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException
                         ("User not exist with id :" + id));
 
         Map<String, Boolean> response = new HashMap<>();
 
-        Boolean bool = userMapper.deleteById(user.getId()) > 0 ?
+        Boolean bool = userService.deleteById(user.getId()) > 0 ?
                 response.put("deleted", Boolean.TRUE) :
                 response.put("deleted", Boolean.FALSE);
         return response;

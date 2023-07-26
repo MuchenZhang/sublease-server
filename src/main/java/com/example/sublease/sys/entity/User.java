@@ -20,9 +20,8 @@ public class User {
     private String myPosts;
     private String starredPosts;
 
-    public User() {
-        this.id = UUID.randomUUID().toString();
-    }
+    public User() {}
+
     public User(String id, String firstName,
                 String lastName, String email, String pwd,
                 String myPosts, String starredPosts) {

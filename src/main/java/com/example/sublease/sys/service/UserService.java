@@ -24,17 +24,17 @@ public class UserService {
         return userMapper.findById(id);
     }
 
-    public void insert(User user) {
+    public int insert(User user) {
         String id = UUID.randomUUID().toString();
         user.setId(id);
-        userMapper.insert(user);
+        return userMapper.insert(user);
     }
 
-    public void update(User user) {
-        userMapper.update(user);
+    public int update(User user) {
+        return userMapper.update(user);
     }
 
-    public void deleteById(String id) {
-        userMapper.deleteById(id);
+    public int deleteById(String id) {
+        return userMapper.deleteById(id);
     }
 }

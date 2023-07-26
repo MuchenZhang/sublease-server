@@ -1,7 +1,6 @@
 package com.example.sublease.basic.mapper;
 
 import com.example.sublease.basic.entity.Post;
-import com.example.sublease.sys.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
