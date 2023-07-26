@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.sublease.basic.mapper.PostMapper">
+    <resultMap id="PostResultMap" type="com.example.sublease.basic.entity.Post">
+        <result column="id" property="id"/>
+        <result column="apart_style" property="apartStyle"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="city" property="city"/>
+        <result column="location" property="location"/>
+        <result column="rent" property="rent"/>
+        <result column="roommate" property="roommate"/>
+        <result column="pet" property="pet"/>
+        <result column="furniture" property="furniture"/>
+        <result column="remarks" property="remarks"/>
+        <result column="images" property="images"/>
+        <result column="contact" property="contact"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="create_date" property="createDate"/>
+    </resultMap>
+
+    <sql id="postJoins">
+
+    </sql>
+
+    <select id="findById" resultMap="PostResultMap" resultType="com.example.sublease.basic.entity.Post">
+        SELECT * FROM T_POSTING WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="PostResultMap" resultType="com.example.sublease.basic.entity.Post">
+        SELECT * FROM T_POSTING
+    </select>
+
+
+    <insert id="insert" parameterType="com.example.sublease.basic.entity.Post">
+        INSERT INTO T_POSTING(
+            id,
+            apart_style,
+            start_date,
+            end_date,
+            city,
+            location,
+            rent,
+            roommate,
+            pet,
+            furniture,
+            remarks,
+            images,
+            contact,
+            created_by,
+            create_date
+        ) VALUES (
+            #{id},
+            #{apartStyle},
+            #{startDate},
+            #{endDate},
+            #{city},
+            #{location},
+            #{rent},
+            #{roommate},
+            #{pet},
+            #{furniture},
+            #{remarks},
+            #{images},
+            #{contact},
+            #{createdBy},
+            #{createDate}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE T_POSTING SET
+            apart_style = #{apartStyle},
+            start_date = #{startDate},
+            end_date = #{endDate},
+            city = #{city},
+            location = #{location},
+            rent = #{rent},
+            roommate = #{roommate},
+            pet = #{pet},
+            furniture = #{furniture},
+            remarks = #{remarks},
+            images = #{images},
+            contact = #{contact}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM T_POSTING
+        WHERE id =#{id}
+    </delete>
+</mapper>
