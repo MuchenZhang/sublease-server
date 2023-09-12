@@ -23,7 +23,6 @@ public class PostController {
         return postService.findAll();
     }
 
-    // create user rest API
     @PostMapping("/posts")
     public Map<String, Boolean> insert(@RequestBody Post post)  {
         Map<String, Boolean> response = new HashMap<>();
@@ -36,7 +35,6 @@ public class PostController {
 
     }
 
-    // get user by id rest api
     @GetMapping("/posts/{id}")
     public Post findById(@PathVariable String id) {
 
@@ -46,7 +44,6 @@ public class PostController {
         return post;
     }
 
-    // update user rest api
     @PutMapping("/posts/{id}")
     public Map<String, Boolean> update(@PathVariable String id,
                                        @RequestBody Post postDetails) {
